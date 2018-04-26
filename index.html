@@ -50,8 +50,8 @@
                     icon: emoji
                 });
             }
-
-            function set_my_position(position) {
+        }
+	 function set_my_position(position) {
 
                 var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 var marker = new google.maps.Marker({
@@ -59,9 +59,7 @@
                     map: map,
                     icon: 'player.png'
                 });
-
             }
-        }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyx3lXIXSMTWtR8OSCrki8vIjALKZQ8jw&callback=initMap"></script>
 
