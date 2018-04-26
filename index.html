@@ -2,16 +2,16 @@
 <html>
 
 <head>
-<style>
-#zombie_map {
-    height: 100%;
-    width: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    background-color: grey;
-}
-</style>
+    <style>
+        #zombie_map {
+            height: 100%;
+            width: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            background-color: grey;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,12 +23,11 @@
         var markers = data.split("\n");
 
         function initMap() {
-		if(navigator.geolocation) {
-    navigator.geolocation.watchPosition(set_my_position);
-}
-else {
-    alert("Geolocation doesn't work in your browser");
-}
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(set_my_position);
+            } else {
+                alert("Geolocation doesn't work in your browser");
+            }
             var mapCanvas = document.getElementById("zombie_map");
             var myCenter = new google.maps.LatLng(-30.518050, 151.658060);
             var mapOptions = {
@@ -43,6 +42,7 @@ else {
                 var latitude = marker_data[0];
                 var longitude = marker_data[1]
                 var emoji = marker_data[2]
+		console.log(emoji)
                 var marker_position = new google.maps.LatLng(latitude, longitude);
                 var marker = new google.maps.Marker({
                     position: marker_position,
@@ -50,19 +50,18 @@ else {
                     icon: emoji
                 });
             }
-			function set_my_position(position){
-		
-			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			var marker = new google.maps.Marker({
+
+            function set_my_position(position) {
+
+                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                var marker = new google.maps.Marker({
                     position: pos,
                     map: map,
                     icon: 'player.png'
                 });
-		
-		}
-        }
-		
 
+            }
+        }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyx3lXIXSMTWtR8OSCrki8vIjALKZQ8jw&callback=initMap"></script>
 
