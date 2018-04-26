@@ -42,7 +42,7 @@
                 var latitude = marker_data[0];
                 var longitude = marker_data[1]
                 var emoji = marker_data[2]
-		console.log(emoji)
+		console.log(emoji);
                 var marker_position = new google.maps.LatLng(latitude, longitude);
                 var marker = new google.maps.Marker({
                     position: marker_position,
@@ -54,6 +54,7 @@
 	 function set_my_position(position) {
 
                 var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		 console.log(pos);
                 var marker = new google.maps.Marker({
                     position: pos,
                     map: map,
