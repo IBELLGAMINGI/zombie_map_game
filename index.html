@@ -44,23 +44,28 @@
                 var emoji = marker_data[2]
 		console.log(emoji);
                 var marker_position = new google.maps.LatLng(latitude, longitude);
+		if (emoji == 'zombie.png')
+		{
+			set_my_position(marker_position, emoji);
+		}
                 var marker = new google.maps.Marker({
                     position: marker_position,
                     map: map,
                     icon: emoji
                 });
             }
-        }
-	 function set_my_position(position) {
+	     function set_my_position(position, ico) {
 
                 var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 		 console.log(pos);
                 var marker = new google.maps.Marker({
                     position: pos,
                     map: map,
-                    icon: 'player.png'
+                    icon: ico
                 });
             }
+        }
+	
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyx3lXIXSMTWtR8OSCrki8vIjALKZQ8jw&callback=initMap"></script>
 
