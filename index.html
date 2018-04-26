@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+#zombie_map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    background-color: grey;
+}
+</style>
+</head>
+
+<body>
+    <div id="zombie_map"></div>
+    <br>
+    <script>
+        var data = "-30.518077984770603 151.6580190391137 zombie.png\n-30.517888512117306 151.65783664890068 hospital.png\n-30.51813344011145 151.6577293605401 weapons.png\n-30.51781919276164 151.65815851398247 zombie.png\n-30.518110333723268 151.65793320842522 hospital.png\n-30.51786540567091 151.65800831027764 zombie.png\n-30.51796707399399 151.65822825141686 zombie.png\n-30.518091848608773 151.65809950538414 zombie.png";
+
+        var markers = data.split("\n");
+
+        function initMap() {
+		if(navigator.geolocation) {
+    navigator.geolocation.watchPosition(set_my_position);
+}
+else {
+    alert("Geolocation doesn't work in your browser");
+}
+            var mapCanvas = document.getElementById("zombie_map");
+            var myCenter = new google.maps.LatLng(-30.518050, 151.658060);
+            var mapOptions = {
+                center: myCenter,
+                zoom: 20
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            for (var i = 0; i < markers.length; i++) {
+                var marker_data = markers[i].trim();
+                marker_data = marker_data.split(" ");
+                //document.write("<br>" + marker_data[i] + "<br>");
+                var latitude = marker_data[0];
+                var longitude = marker_data[1]
+                var emoji = marker_data[2]
+                var marker_position = new google.maps.LatLng(latitude, longitude);
+                var marker = new google.maps.Marker({
+                    position: marker_position,
+                    map: map,
+                    icon: emoji
+                });
+            }
+			function set_my_position(position){
+		
+			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: 'player.png'
+                });
+		
+		}
+        }
+		
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyx3lXIXSMTWtR8OSCrki8vIjALKZQ8jw&callback=initMap"></script>
+
+</body>
+
+</html>
